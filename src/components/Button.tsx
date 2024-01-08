@@ -8,8 +8,6 @@ type Props = {
 };
 
 export const Button = ({ text }: Props) => {
-  const [isPressed, setIsPressed] = useState(false);
-
   const onPress = () => {
     void Haptics.selectionAsync();
   };
@@ -18,10 +16,8 @@ export const Button = ({ text }: Props) => {
     <Pressable
       style={styles.pressable}
       onPressIn={() => {
-        setIsPressed(true);
         onPress();
       }}
-      onPressOut={() => setIsPressed(false)}
     >
       <LinearGradient
         // Background Linear Gradient
@@ -36,22 +32,7 @@ export const Button = ({ text }: Props) => {
         }}
         start={{ x: 0, y: 0 }}
       />
-      {isPressed ? (
-        <LinearGradient
-          // Background Linear Gradient
-          colors={["#A0F9FF", "#f9a0ff"]}
-          locations={[0.5, 1]}
-          style={{
-            borderRadius: 32,
-            position: "absolute",
-            top: 0,
-            bottom: 0,
-            right: 0,
-            left: 0,
-          }}
-          start={{ x: 0, y: 0 }}
-        />
-      ) : null}
+
       <Text style={styles.text}>{text}</Text>
     </Pressable>
   );
@@ -59,6 +40,8 @@ export const Button = ({ text }: Props) => {
 
 const styles = StyleSheet.create({
   pressable: {
+    borderColor: "rgba(62,62,62,0.18)",
+    borderWidth: 2,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 32,
