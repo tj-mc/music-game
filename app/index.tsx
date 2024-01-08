@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { WelcomeSplash } from "../src/screens/WelcomeSplash";
 import { LinearGradientBackground } from "../src/components/LinearGradientBackground";
 
-export default function App() {
+export default function Index() {
   return (
     <View style={styles.container}>
       <LinearGradientBackground />

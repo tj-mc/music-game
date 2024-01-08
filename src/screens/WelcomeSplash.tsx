@@ -1,12 +1,33 @@
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Button as RNButton,
+} from "react-native";
 import React from "react";
 import { Button } from "../components/Button";
+import { Link, useRouter } from "expo-router";
 
 export const WelcomeSplash = () => {
+  const router = useRouter();
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Guess{"\n"}The Music</Text>
-      <Button text={"PLAY"} />
+      <Button
+        text={"PLAY"}
+        onPress={() => {
+          router.push("/how-to");
+        }}
+      />
+      <View>
+        <RNButton title={"How To"} onPress={() => router.push("/how-to")} />
+        <RNButton
+          title={"Who's playing"}
+          onPress={() => router.push("/select-players")}
+        />
+        <RNButton title={"Prompt"} onPress={() => router.push("/prompt")} />
+      </View>
     </View>
   );
 };

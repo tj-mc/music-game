@@ -5,10 +5,12 @@ import { useState } from "react";
 
 type Props = {
   text: string;
+  onPress: () => void;
 };
 
-export const Button = ({ text }: Props) => {
-  const onPress = () => {
+export const Button = ({ text, onPress }: Props) => {
+  const onPressInternal = () => {
+    onPress();
     void Haptics.selectionAsync();
   };
 
@@ -16,7 +18,7 @@ export const Button = ({ text }: Props) => {
     <Pressable
       style={styles.pressable}
       onPressIn={() => {
-        onPress();
+        onPressInternal();
       }}
     >
       <LinearGradient
@@ -30,7 +32,7 @@ export const Button = ({ text }: Props) => {
           right: 0,
           left: 0,
         }}
-        start={{ x: 0, y: 0 }}
+        start={{ x: 0.1, y: 0 }}
       />
 
       <Text style={styles.text}>{text}</Text>
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 6,
     },
+    minWidth: 200,
     shadowOpacity: 0.37,
     shadowRadius: 7.49,
 
